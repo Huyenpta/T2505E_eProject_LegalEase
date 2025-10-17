@@ -44,7 +44,7 @@ body {
   padding: 0;
 }
 
-.hero-banner {
+/*.hero-banner {
   position: relative;
   width: 100%;
   min-height: 65vh;
@@ -54,7 +54,7 @@ body {
   align-items: center;
   padding: 60px 0;
   margin-top: -10px; /* nếu muốn hero dính hơn */
-}
+/* }*/
 
 
 /* Làm mờ nhẹ bên trái, không che quá nhiều phần người */

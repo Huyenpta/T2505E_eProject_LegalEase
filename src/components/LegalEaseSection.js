@@ -142,7 +142,7 @@ const LegalEaseSection = () => {
                   <ul className="list-unstyled">
                     {col.map((city, index) => (
                       <li key={index} className="mb-2">
-                        <a href="#" className="text-primary text-decoration-none">
+                        <a href="#" className="fs-5 text-primary text-decoration-none">
                           {city.name}
                         </a>
                       </li>

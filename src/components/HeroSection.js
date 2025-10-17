@@ -11,7 +11,22 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="hero-banner">
+    <section
+      className="hero-banner"
+      style={{
+        position: 'relative', // 1. Thêm dấu nháy đơn
+        width: '100%',
+        minHeight: '65vh', // 2. Đổi 'min-height' thành 'minHeight'
+        color: '#000',
+        background: 'url("images/lawyer-hero.png") no-repeat center right/cover',
+        display: 'flex',
+        alignItems: 'center', // 2. Đổi 'align-items' thành 'alignItems'
+        padding: '60px 0',
+        marginTop: '-10px', // 2. Đổi 'margin-top' thành 'marginTop'
+      }}
+    >
+      {/* Nội dung component HeroSection */}
+
       <div className="container">
         <h1 className="hero-title">
           Find the Right Lawyer
