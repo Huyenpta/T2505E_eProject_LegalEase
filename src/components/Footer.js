@@ -54,7 +54,7 @@ const Footer = () => {
               <p className="text-muted mb-0">CASES POSTED</p>
             </Col>
             <Col md={4}>
-              <img src="/images/bbb.png" alt="BBB Accredited" height="30" className="img-fluid" />
+              <img src="images/bbb.png" alt="BBB Accredited" height="30" className="img-fluid" />
             </Col>
           </Row>
         </Container>
