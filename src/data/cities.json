@@ -1,0 +1,12 @@
+[
+  { "id": 1, "name": "Thành phố Hà Nội" },
+  { "id": 2, "name": "Thành phố Huế" },
+  { "id": 3, "name": "Tỉnh Lai Châu" },
+  { "id": 4, "name": "Tỉnh Điện Biên" },
+  { "id": 5, "name": "Tỉnh Sơn La" },
+  { "id": 6, "name": "Tỉnh Lạng Sơn" },
+  { "id": 7, "name": "Tỉnh Quảng Ninh" },
+  { "id": 8, "name": "Tỉnh Thanh Hoá" },
+  { "id": 9, "name": "Tỉnh Nghệ An" },
+  { "id": 10, "name": "Tỉnh Hà Tĩnh" }
+]

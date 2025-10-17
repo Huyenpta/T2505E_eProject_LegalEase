@@ -1,0 +1,25 @@
+{
+  "lawyers": [
+    {
+      "id": 1,
+      "name": "Tate Y",
+      "specialty": "Employment & Labor Law",
+      "rating": 5,
+      "image": "/images/lawyer1.webp"
+    },
+    {
+      "id": 2,
+      "name": "Mitchell M",
+      "specialty": "Family Law",
+      "rating": 5,
+      "image": "/images/lawyer2.webp"
+    },
+    {
+      "id": 3,
+      "name": "Teresa H",
+      "specialty": "Criminal Law",
+      "rating": 4.5,
+      "image": "/images/lawyer3.jpg"
+    }
+  ]
+}
