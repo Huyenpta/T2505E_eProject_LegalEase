@@ -9,6 +9,7 @@ const Header = () => {
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
+  // Hàm xử lý tìm kiếm
   const handleSearch = (e) => {
     e.preventDefault();
     if (!keyword.trim()) return;
@@ -16,6 +17,11 @@ const Header = () => {
     const query = new URLSearchParams({ keyword }).toString();
     navigate(`/search?${query}`);
     setShowSearch(false);
+  };
+
+  // Hàm xử lý điều hướng cho Log In và Sign Up
+  const handleNavigation = (path) => {
+    navigate(path);
   };
 
   return (
@@ -34,13 +40,24 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav className="align-items-center gap-3">
+              
+              {/* Menu Explore */}
               <Nav.Link href="#" className="text-dark fw-semibold">
                 Explore LegalEase ▼
               </Nav.Link>
+              
               <span className="border-end mx-1" style={{ height: "20px" }}></span>
-              <Nav.Link href="#" className="text-dark fw-semibold">
+              
+              {/* Link Đăng nhập (Log In) - Chỉ hiển thị mục này */}
+              <Nav.Link 
+                onClick={() => handleNavigation('/login')} 
+                className="text-dark fw-semibold cursor-pointer" 
+              >
                 Log In
               </Nav.Link>
+
+              {/* <Button> Sign Up đã được loại bỏ theo yêu cầu </Button> */}
+
               <FaSearch
                 size={18}
                 style={{ cursor: "pointer", color: "#1a237e" }}

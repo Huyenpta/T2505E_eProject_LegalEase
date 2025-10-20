@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Card, Carousel } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"; // 👈 thêm dòng này
 import newsData from "../data/news.json";
 import "../styles/LawLibrary.css";
 
 const LawLibrary = () => {
-    const [visibleCount, setVisibleCount] = useState(4); // số bài hiển thị mỗi nhóm
-    const [index, setIndex] = useState(0); // slide hiện tại
+    const [visibleCount] = useState(4);
+    const [index, setIndex] = useState(0);
+    const navigate = useNavigate(); // 👈 khởi tạo navigate
 
     // Chia bài viết thành nhóm 4
     const groupedNews = [];
@@ -15,15 +17,14 @@ const LawLibrary = () => {
 
     const handleSelect = (selectedIndex) => setIndex(selectedIndex);
 
+    // 👇 Khi click LEARN MORE → chuyển sang trang /news
     const handleMoreNews = () => {
-        if (index < groupedNews.length - 1) setIndex(index + 1);
+        navigate("/news");
     };
 
     return (
         <section className="py-5 bg-light">
-            {/* ✅ CSS chỉnh layout và mũi tên */}
             <Container>
-                {/* Giới thiệu */}
                 <div className="text-center mb-5">
                     <h3 className="fw-bold mb-3">Legal Insights</h3>
                     <p className="text-muted mx-auto" style={{ maxWidth: "900px" }}>
@@ -34,7 +35,6 @@ const LawLibrary = () => {
                     </p>
                 </div>
 
-                {/* Carousel hiển thị 4 bài mỗi slide */}
                 <Carousel
                     activeIndex={index}
                     onSelect={handleSelect}
@@ -69,7 +69,6 @@ const LawLibrary = () => {
                     ))}
                 </Carousel>
 
-                {/* Nút More News */}
                 <div className="text-center mt-4">
                     <Button variant="warning" onClick={handleMoreNews}>
                         LEARN MORE
