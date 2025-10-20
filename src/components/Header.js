@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navbar, Container, Nav, Form, FormControl, Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 
 const Header = () => {
@@ -29,9 +29,10 @@ const Header = () => {
       <Navbar bg="light" expand="lg" className="shadow-sm py-2 header-navbar">
         <Container className="d-flex align-items-center justify-content-between">
           <Navbar.Brand
-            href="/"
+            as={Link}
+            to="/"
             className="fw-bold d-flex align-items-center"
-            style={{ fontSize: "1.4rem", color: "#1a237e" }}
+            style={{ fontSize: "1.4rem", color: "#1a237e", textDecoration: "none" }}
           >
             ⚖️ <span className="ms-1 text-warning">Legal</span>
             <span style={{ color: "#1a237e" }}>Ease</span>
@@ -40,18 +41,18 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav className="align-items-center gap-3">
-              
+
               {/* Menu Explore */}
               <Nav.Link href="#" className="text-dark fw-semibold">
                 Explore LegalEase ▼
               </Nav.Link>
-              
+
               <span className="border-end mx-1" style={{ height: "20px" }}></span>
-              
+
               {/* Link Đăng nhập (Log In) - Chỉ hiển thị mục này */}
-              <Nav.Link 
-                onClick={() => handleNavigation('/login')} 
-                className="text-dark fw-semibold cursor-pointer" 
+              <Nav.Link
+                onClick={() => handleNavigation('/login')}
+                className="text-dark fw-semibold cursor-pointer"
               >
                 Log In
               </Nav.Link>
