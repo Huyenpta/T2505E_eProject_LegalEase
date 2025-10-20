@@ -1,32 +1,45 @@
 import React, { useState, useEffect } from "react";
-import categoriesData from "../data/categories.json"; // 👈 import file JSON
+import { useNavigate } from "react-router-dom";
+import categoriesData from "../data/categories.json";
 import "../App.css";
 
 const HeroSection = () => {
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [location, setLocation] = useState("");
+  const navigate = useNavigate();
 
-  // Giả lập load từ "API" (ở đây là JSON)
   useEffect(() => {
     setCategories(categoriesData);
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Nếu không nhập gì thì bỏ qua
+    if (!selectedCategory && !location) return;
+
+    // Điều hướng kèm query params
+    navigate(
+      `/search?category=${encodeURIComponent(selectedCategory)}&city=${encodeURIComponent(location)}`
+    );
+  };
 
   return (
     <section
       className="hero-banner"
       style={{
-        position: 'relative', // 1. Thêm dấu nháy đơn
-        width: '100%',
-        minHeight: '65vh', // 2. Đổi 'min-height' thành 'minHeight'
-        color: '#000',
+        position: "relative",
+        width: "100%",
+        minHeight: "65vh",
+        color: "#000",
         background: 'url("images/lawyer-hero.png") no-repeat center right/cover',
-        display: 'flex',
-        alignItems: 'center', // 2. Đổi 'align-items' thành 'alignItems'
-        padding: '60px 0',
-        marginTop: '-10px', // 2. Đổi 'margin-top' thành 'marginTop'
+        display: "flex",
+        alignItems: "center",
+        padding: "60px 0",
+        marginTop: "-10px",
       }}
     >
-      {/* Nội dung component HeroSection */}
-
       <div className="container">
         <h1 className="hero-title">
           Find the Right Lawyer
@@ -34,9 +47,12 @@ const HeroSection = () => {
         </h1>
         <p className="hero-subtitle">Fast, Free and Confidential</p>
 
-        <form className="hero-form">
-          <select>
-            <option>Choose a Category</option>
+        <form className="hero-form" onSubmit={handleSubmit}>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">Choose a Category</option>
             {categories.map((cat) => (
               <option key={cat.id} value={cat.name}>
                 {cat.name}
@@ -44,8 +60,15 @@ const HeroSection = () => {
             ))}
           </select>
 
-          <input type="text" placeholder="ZIP Code or Location" />
-          <button className="hero-btn">Search for Attorneys →</button>
+          <input
+            type="text"
+            placeholder="ZIP Code or Location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <button type="submit" className="hero-btn">
+            Search for Attorneys →
+          </button>
         </form>
 
         <p className="hero-footer">

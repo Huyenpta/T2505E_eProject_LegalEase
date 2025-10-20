@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // 👈 thêm dòng này
 import specializations from "../data/specializations.json";
 import cities from "../data/cities.json";
 
@@ -7,7 +8,9 @@ const LegalEaseSection = () => {
   const [activeTab, setActiveTab] = useState("issue");
   const [visibleIssues, setVisibleIssues] = useState(15);
   const [visibleCities, setVisibleCities] = useState(15);
+  const navigate = useNavigate(); // 👈 để điều hướng khi click
 
+  // Chia mảng thành từng nhóm
   const chunkArray = (arr, size) => {
     const chunks = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -21,6 +24,18 @@ const LegalEaseSection = () => {
 
   const issueColumns = chunkArray(visibleIssueItems, 5);
   const cityColumns = chunkArray(visibleCityItems, 5);
+
+  // 👇 Khi click vào category
+  const handleCategoryClick = (categoryName) => {
+    const query = new URLSearchParams({ category: categoryName }).toString();
+    navigate(`/search?${query}`);
+  };
+
+  // 👇 Khi click vào city
+  const handleCityClick = (cityName) => {
+    const query = new URLSearchParams({ city: cityName }).toString();
+    navigate(`/search?${query}`);
+  };
 
   return (
     <div className="container text-center py-5" style={{ maxWidth: "1100px" }}>
@@ -54,7 +69,7 @@ const LegalEaseSection = () => {
         </div>
       </div>
 
-      {/* --- Canada --- */}
+      {/* --- Mở rộng sang Việt Nam --- */}
       <div className="mb-5">
         <h3 className="fw-semibold fs-3 mb-3">
           LegalEase Expands Services to Vietnam Clients and Lawyers
@@ -69,7 +84,6 @@ const LegalEaseSection = () => {
       </div>
 
       {/* --- Tabs --- */}
-      
       <ul className="nav nav-tabs justify-content-center mb-4" role="tablist">
         <li className="fs-3 nav-item" role="presentation">
           <button
@@ -100,9 +114,13 @@ const LegalEaseSection = () => {
                   <ul className="list-unstyled">
                     {col.map((item, index) => (
                       <li key={index} className="mb-2">
-                        <a href="#" className="text-primary text-decoration-none fs-5">
+                        <button
+                          onClick={() => handleCategoryClick(item.name)}
+                          className="btn btn-link text-primary text-decoration-none fs-5 p-0"
+                          style={{ cursor: "pointer" }}
+                        >
                           {item.name}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -142,9 +160,13 @@ const LegalEaseSection = () => {
                   <ul className="list-unstyled">
                     {col.map((city, index) => (
                       <li key={index} className="mb-2">
-                        <a href="#" className="fs-5 text-primary text-decoration-none">
+                        <button
+                          onClick={() => handleCityClick(city.name)}
+                          className="btn btn-link text-primary text-decoration-none fs-5 p-0"
+                          style={{ cursor: "pointer" }}
+                        >
                           {city.name}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>

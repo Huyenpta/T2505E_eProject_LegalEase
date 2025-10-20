@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { Navbar, Container, Nav, Form, FormControl, Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
-import "../App.css"; // đảm bảo bạn đã import CSS
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!keyword.trim()) return;
+
+    const query = new URLSearchParams({ keyword }).toString();
+    navigate(`/search?${query}`);
+    setShowSearch(false);
+  };
 
   return (
     <>
       <Navbar bg="light" expand="lg" className="shadow-sm py-2 header-navbar">
         <Container className="d-flex align-items-center justify-content-between">
-          {/* Logo */}
           <Navbar.Brand
-            href="#"
+            href="/"
             className="fw-bold d-flex align-items-center"
             style={{ fontSize: "1.4rem", color: "#1a237e" }}
           >
@@ -40,17 +51,20 @@ const Header = () => {
         </Container>
       </Navbar>
 
-      {/* Search Box hiển thị khi click icon */}
       {showSearch && (
         <div className="search-bar-container text-center py-3 bg-light shadow-sm">
           <Container>
-            <Form className="d-flex justify-content-center">
+            <Form className="d-flex justify-content-center" onSubmit={handleSearch}>
               <FormControl
                 type="search"
                 placeholder="Search lawyers, categories..."
                 className="me-2 w-50"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
               />
-              <Button variant="primary">Search</Button>
+              <Button variant="primary" type="submit">
+                Search
+              </Button>
             </Form>
           </Container>
         </div>
